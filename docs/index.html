@@ -1,77 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8"/>
-    <meta name="description" content="FAF Beta Balance Patchnote page"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>FAF Beta Balance</title>
-    <link rel="stylesheet" href="./styles/index.css"/>
+    <meta charset="utf-8">
+    <title>FAForever Patchnotes - Balance & Game Updates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Browse and access the latest FAForever balance and game patch notes in an easy-to-read format.">
+    
+    <!-- META Tags For Discord and Social Sharing -->
+    <meta name="twitter:image:src" content="https://raw.githubusercontent.com/FAForever/patchnotes/master/images/thumbnail/thumbnail.png">
+    <meta name="twitter:site" content="@FAForever">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FAForever Patchnotes - Balance & Game Updates">
+    <meta name="twitter:description" content="Browse and access the latest FAForever balance and game patch notes in an easy-to-read format.">
+    
+    <meta property="og:image:url" content="https://raw.githubusercontent.com/FAForever/patchnotes/master/images/thumbnail/thumbnail.png">
+    <meta property="og:image:alt" content="FAForever Patchnote Site">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+    <meta property="og:site_name" content="FAForever">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FAForever Patchnotes - Balance & Game Updates">
+    <meta property="og:url" content="https://faforever.com/patchnotes">
+    <meta property="og:description" content="Browse and access the latest FAForever balance and game patch notes in an easy-to-read format.">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="./style/index.css">
+    <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
+
+    <!-- External Scripts -->
+    <script src="./scripts/backgroundRandom.js" defer></script>
+    <script src="./scripts/populatePatches.js" defer></script>
   </head>
   <body>
-    <main class="Grid">
-      <div class="Content">
+    <main class="GridContainer">
+      <div class="Space"></div>
 
-        <div id="Intro">
-          <header class="FlexboxContainer" >
-            <h1 class="FlexGrow-1">FAF Balance Testing</h1>
-            <h4>Date Updated: 09/07/2024</h4>
-          </header>
-          
-          <h3>Currently No new Changes</h3>
-
-          <p>Welcome to the FAF Balance Testing patchnotes. The changes listed here are all subject to change.</p>
-          <p><b>Disclaimer</b>: Changes here may be broken or have unforeseen side effects if you encounter anything please report it to the balance team on the <a href="https://discord.gg/pK94Dk9hNz"> Game Bug Reporting </a> Channel on the FAF Discord</p>
-          <p>All the changes that are currently listed as part of FAFDevelop allow us to evaluate the new balance in actual games. We will keep this page as up-to-date as possible and once we feel the changes are ready for the main game.</p>
-          <h4>-- Balance Team</h4>
-          <hr>
-        </div>
-
-        <h2>Land</h2>
-        <div id="0">
-          <div id="exp-land" class="Card">
-            <h3>Experimentals</h3>
-
-            <h4><img src="/assets/images/units/uef/land/T4Fatboy.png">Fatboy</h4>
-            <p>In general the Fatboy has been in an awkward position for a while now. With these changes we try to mitigate some of the perceived issues while preserving the identity of the Fatboy.</p>
-
-            <ul>
-              <li>Shield:
-                <ul>
-                  <li>RechargeTime: <s>120</s> <i class="fa-solid fa-arrow-right"></i> 75</li>
-                  <li>RegenRate: <s>100</s> <i class="fa-solid fa-arrow-right"></i> 200</li>
-                  <li>Size: <s>25</s> <i class="fa-solid fa-arrow-right"></i> 24</li>
-                </ul>
-              </li>
-              <li>Anit-Air Guns
-                <ul>
-                  <li>Range: <s>45</s> <i class="fa-solid fa-arrow-right"></i> 55</li>
-                  <li>Damage: <s>20</s> <i class="fa-solid fa-arrow-right"></i> 40</li>
-                </ul>
-              </li>
-              <li>Unit/Collision Size:
-                <ul>
-                  <li>UniformScale: <s>2.22</s> <i class="fa-solid fa-arrow-right"></i> 2.15</li>
-                  <li>SizeX: <s>5.5</s> <i class="fa-solid fa-arrow-right"></i> 5.2</li>
-                  <li>SizeY: <s>1.5</s> <i class="fa-solid fa-arrow-right"></i> 1.4</li>
-                  <li>SizeZ: <s>8</s> <i class="fa-solid fa-arrow-right"></i> 7.2</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <!-- Title Section -->
+      <div class="Title GridItemBackground">
+        <h1>
+          <img alt="UEF Faction Logo" class="UEF" src="./assets/images/faction/UEF.svg" loading="lazy">
+          <img alt="Cybran Faction Logo" class="CYBRAN" src="./assets/images/faction/Cybran.svg" loading="lazy">
+          FAForever Patchnotes
+          <img alt="Aeon Faction Logo" class="AEON" src="./assets/images/faction/Aeon.svg" loading="lazy">
+          <img alt="Seraphim Faction Logo" class="SERAPHIM" src="./assets/images/faction/Seraphim.svg" loading="lazy">
+        </h1>
+        <p class="deprecation-notice"> This site will be deprecated as of 2025. Please use <a href="https://faforever.github.io/fa/changelog" target="_blank" rel="noopener noreferrer"><b><u>this link</u></b></a>.</p>
       </div>
-    </main>    
+
+      <!-- Balance Patch Section -->
+      <div class="BalanceContainer GridItemBackground">
+        <h2>Balance</h2>
+        <div class="BalanceJSONList"></div>
+      </div>
+
+      <!-- Game Patch Section -->
+      <div class="GameContainer GridItemBackground">
+        <h2>Game</h2>
+        <div class="GameJSONList"></div>
+        <p>Older patchnotes are available <a href="https://github.com/FAForever/fa/releases" target="_blank" rel="noopener noreferrer">here</a>.</p>
+        <p><em>Game patchnotes will be moved to a new location soon.</em></p>
+      </div>
+
+      <!-- Balance Development Section -->
+      <div class="BalanceDev GridItemBackground">
+        <h3>Upcoming Balance Changes</h3>
+        <p>You can see the latest changes <a href="/pages/balanceChanges.html">here</a>. <br>This list of the current changes is on the FAF Develop game type and is subject to changes.</p>
+      </div>
+
+      <!-- Support Section -->
+      <div class="Support GridItemBackground">
+        <h3>Report Any Issues</h3>
+        <p>If you see any issues, please submit a report <a href="https://github.com/FAForever/patchnotes/issues" target="_blank" rel="noopener noreferrer">here</a>.</p>
+      </div>
+    </main>
   </body>
-  <footer>
-    <div class="BackToTop">
-      <button  href="#top">
-          Back to Top
-      </button>
-    </div>
-    <br>
-    <span>
-      <a href="../index.html">Back to Patchnote List</a>
-      <p>© 2015-2024 FAForever</p>
-    </span>
-  </footer>
 </html>
