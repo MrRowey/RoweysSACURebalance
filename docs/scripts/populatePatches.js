@@ -1,5 +1,5 @@
 async function populate() {
-  const requestURL = '../data/version.json';
+  const requestURL = './data/version.json';
 
   try {
     const response = await fetch(requestURL, { cache: 'no-cache' });
@@ -8,21 +8,25 @@ async function populate() {
       throw new Error(`Network response was not ok: ${response.statusText}`);
     }
 
-    const data = await response.json();
-    const { Version = [] } = data; // Extract Version array, default to empty array if missing
+    const patches = await response.json();
+    const { version = [] } = patches; // Provide empty arrays as fallback
 
-    if (Version.length === 0) {
+    if (version.length === 0) {
       throw new Error('Invalid data format: Missing Version data.');
     }
 
-    // Render the Version list
-    renderVersionList(Version, '.VersionJSONList');
+    // Render only if data exists
+    if (version.length > 0) {
+      renderPatchList(version, '.VersionJSONList');
+    } else {
+      console.warn('No balance data available.');
+    }
   } catch (error) {
     console.error('There has been a problem with your fetch operation:', error);
   }
 }
 
-function renderVersionList(versionList, containerSelector) {
+function renderPatchList(patchList, containerSelector) {
   const container = document.querySelector(containerSelector);
 
   if (!container) {
@@ -32,7 +36,7 @@ function renderVersionList(versionList, containerSelector) {
 
   const fragment = document.createDocumentFragment(); // Use DocumentFragment for better performance
 
-  versionList.forEach(({ patch = 'Unknown Patch', link = '#' }) => {
+  patchList.forEach(({ patch = 'Unknown Patch', link = '#' }) => {
     const listItem = document.createElement('li');
 
     const linkElement = document.createElement('a');
@@ -40,7 +44,7 @@ function renderVersionList(versionList, containerSelector) {
     linkElement.href = link;
     linkElement.target = '_blank';
 
-    listItem.appendChild(linkElement);
+    listItem.append(linkElement);
     fragment.appendChild(listItem);
   });
 
