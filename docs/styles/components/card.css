@@ -1,0 +1,99 @@
+@import '../root.css';
+
+/* Main Card Styles */
+.Card {
+  background: var(--Card);
+  border-radius: 1em;
+  padding: 16px 24px;
+  margin: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06); /* Softer layered shadow */
+  color: var(--Text);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Card Hover for Interaction */
+.Card:hover {
+  transform: translateY(-5px); /* Slight lift effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+}
+
+/* Image Styling */
+.Card img {
+  margin-bottom: 15px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5em;
+  object-fit: cover; /* Ensure consistent image aspect ratio */
+  transition: transform 0.2s ease;
+}
+
+.Card img:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Optional Clickable Card */
+.Card.Clickable {
+  cursor: pointer;
+}
+
+/* Default Spacing for Card Elements */
+.Card h3,
+.Card h4,
+.Card p,
+.Card a {
+  margin: 10px 0;
+}
+
+.Card h3,
+.Card h4 {
+  font-size: 1.25rem;
+}
+
+.Card p {
+  line-height: 1.6;
+  color: var(--Text);
+}
+
+/* Button inside the Card */
+.Card a {
+  display: inline-block;
+  padding: 10px 15px;
+  background: var(--ButtonBackground);
+  color: var(--ButtonText);
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: auto;
+  transition: background 0.3s ease;
+}
+
+.Card a:hover {
+  background: var(--ButtonHoverBackground);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .Card {
+    padding: 12px 20px;
+    margin: 15px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1), 0 2px 3px rgba(0, 0, 0, 0.06);
+  }
+}
+
+@media (max-width: 420px) {
+  .Card {
+    padding: 8px 16px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .Card img {
+    margin-bottom: 10px;
+  }
+
+  .Card h3,
+  .Card h4 {
+    font-size: 1.1rem;
+  }
+}

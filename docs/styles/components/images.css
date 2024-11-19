@@ -1,0 +1,93 @@
+.ImageSlider {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 1em;
+  max-width: 100%;
+}
+
+.ImageSlider > div {
+  border-right: 2px solid rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  max-width: 100%;
+  overflow: hidden;
+  resize: horizontal;
+  z-index: 1;
+  transition: width 0.3s ease; /* Smooth transition when resizing */
+}
+
+.ImageSlider > div:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  background: linear-gradient(-45deg, white 50%, transparent 0);
+  background-clip: content-box;
+  cursor: ew-resize;
+  filter: drop-shadow(
+    0 0 6px rgba(0, 0, 0, 0.4)
+  ); /* Softer shadow for better aesthetics */
+  transition: transform 0.2s ease; /* Smooth interaction when clicked */
+}
+
+.ImageSlider > div:hover:before {
+  transform: scale(1.1); /* Slightly enlarge the handle on hover */
+}
+
+.ImageSlider img {
+  display: block;
+  border-radius: 1em;
+  user-select: none;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: opacity 0.3s ease; /* Smooth fade effect when switching images */
+  loading: lazy; /* Lazy load for performance optimization */
+}
+
+/* Image Showcase Styles */
+.ImageShowcase {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* Handle responsiveness for mobile devices */
+@media (max-width: 768px) {
+  .ImageSlider > div {
+    width: 25px; /* Smaller handle */
+  }
+
+  .ImageSlider > div:before {
+    width: 16px; /* Adjust handle size for medium screens */
+    height: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .ImageSlider > div {
+    width: 20px; /* Even smaller handle for mobile */
+  }
+
+  .ImageSlider > div:before {
+    width: 12px; /* Adjust handle size for small screens */
+    height: 12px;
+  }
+}
+
+/* ARIA and accessibility improvements */
+.ImageSlider[aria-valuenow] {
+  outline: none;
+}
+
+.ImageSlider[aria-valuenow]:focus-visible > div:before {
+  outline: 2px solid var(--ButtonFocusOutline, #000); /* Focus outline for keyboard users */
+  outline-offset: 2px;
+}
