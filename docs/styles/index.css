@@ -76,12 +76,9 @@ a:active {
 
 .Space,
 .Title,
-.BalanceContainer,
-.GameContainer,
-.BalanceDev,
+.VersionContainer,
 .Support,
-.BalanceJSONList,
-.GameJSONList {
+.VersionJSONList {
   padding: 10px;
   text-align: center;
 }
@@ -99,37 +96,21 @@ a:active {
   color: var(--Text);
 }
 
-.BalanceContainer {
-  grid-column: 2;
+.VersionContainer {
+  grid-column: 2 / span 2;
   grid-row: 3;
-}
-
-.GameContainer {
-  grid-column: 3;
-  grid-row: 3;
-}
-
-.GameContainer p {
-  text-align: center;
-}
-
-.BalanceDev {
-  grid-row: 4;
-  grid-column: 2 / span 1;
 }
 
 .Support {
   grid-row: 4;
-  grid-column: 3 / span 1;
+  grid-column: 2 / span 2;
 }
 
-.BalanceDev p,
 .Support p {
   padding: 10px 0;
 }
 
-.BalanceJSONList,
-.GameJSONList {
+.VersionJSONList {
   grid-row: 3;
   text-align: left;
 }
