@@ -1,0 +1,226 @@
+@import '../style/root.css';
+@import '../style/components/card.css';
+@import '../style/components/images.css';
+@import '../style/components/video.css';
+@import '../style/components/button.css';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Ubuntu', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  margin: 10px 0;
+}
+
+a {
+  color: var(--Link);
+  text-decoration: underline;
+}
+
+ul {
+  padding: 10px 25px;
+}
+
+li {
+  padding: 5px 0;
+  list-style: none;
+}
+
+header {
+  padding: 15px;
+}
+
+.patchDescription {
+  margin: 10px;
+}
+
+.Grid {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 0.75fr;
+  gap: 20px;
+  margin: 0;
+}
+
+.Content {
+  grid-column: 2;
+}
+
+.Date {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.Card a {
+  color: var(--Link-Card);
+  text-decoration: underline;
+}
+
+.Card a:hover {
+  color: var(--Link-Hover);
+}
+
+.Intro p {
+  color: var(--Text);
+  padding: 10px;
+}
+
+.Intro h3 {
+  padding-left: 10px;
+}
+
+.FlexboxContainer {
+  padding-left: 10px;
+}
+
+/* Sidebar */
+.Sidebar {
+  grid-column: 3; /* Positioning within the grid */
+  position: relative; /* Relative positioning */
+}
+
+/* Sidebar Title */
+.Sidebar h2 a {
+  color: var(--Text); /* Text color */
+  text-decoration: none; /* Remove underline from links */
+}
+
+/*Icon Sidebar Container */
+.IconSidebar {
+  position: sticky; /* Sticky positioning */
+  top: 20px; /* Distance from the top */
+  background: var(--IconGridBackground); /* Background color */
+  padding: 5px 20px; /* Padding */
+  margin-left: 5px; /* Margin from the left */
+  color: var(--Text); /* Text color */
+  text-align: justify; /* Text alignment */
+  border-radius: 15px; /* Border radius */
+  display: grid; /* Enable grid layout */
+  grid-template-columns: repeat(4, 1fr); /* Four column layout */
+  gap: 5px; /* Space between rows */
+}
+
+/* Title in Icon Sidebar */
+.IconSidebarTitle,
+.IconSidebarSubtitle {
+  grid-column: 1 / -1; /* Spanning full width */
+  text-align: center; /* Centred text */
+  margin: 0; /* Remove default margin */
+  padding: 10px 0; /* Padding */
+}
+
+/* Subgrid in Icon Sidebar */
+.IconSidebarSubgrid {
+  display: grid; /* Enable grid layout */
+  grid-template-columns: repeat(4, 0.15fr);
+  gap: 5px; /* Space between grid items */
+}
+
+/* Icon in Subgrid */
+.IconSidebarSubgrid img {
+  width: 50px; /* Icon width */
+  height: 50px; /* Icon height */
+  text-decoration: none; /* Remove underline from links */
+  color: #3498db; /* Icon color */
+  transition: box-shadow 0.3s ease; /* Smooth box shadow transition */
+  border-radius: 10px;
+}
+.IconSidebarSubgrid img:hover {
+  box-shadow: 0 0 10px var(--IconGlow); /* Icon glow on hover */
+}
+
+/* Icon Grid Container */
+.IconGrid {
+  position: sticky; /* Sticky positioning */
+  top: 20px; /* Distance from the top */
+  background: var(--IconGridBackgroundG); /* Background color */
+  padding: 5px 20px 20px; /* Padding */
+  color: var(--Text); /* Text color */
+  text-align: justify; /* Text alignment */
+  border-radius: 15px; /* Rounded Corners */
+}
+
+/* Icon Grid Title */
+.IconGrid h2 {
+  margin: 10px; /* Margin */
+}
+
+/* Icons in Icon Grid */
+.IconGrid img {
+  width: 45px; /* Icon width */
+  height: 45px; /* Icon height */
+}
+
+.BackToTop {
+  text-align: center;
+  border-radius: 50%;
+}
+
+.Stat {
+  border-radius: 8px;
+  border: lightgray 1px solid;
+  padding: 3px 8px;
+}
+
+.SectionHeader {
+  padding: 10px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .Grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .Sidebar {
+    grid-column: 1;
+  }
+
+  .Content {
+    grid-column: 1;
+  }
+
+  .IconSidebar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .IconSidebarSubgrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .IconGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .Grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .Sidebar {
+    grid-column: 1;
+  }
+
+  .Content {
+    grid-column: 1;
+  }
+
+  .IconSidebar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .IconSidebarSubgrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .IconGrid {
+    grid-template-columns: 1fr;
+  }
+}
