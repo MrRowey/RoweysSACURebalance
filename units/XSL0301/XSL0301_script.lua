@@ -1,5 +1,4 @@
-
------------------------------------------------------------------
+﻿-----------------------------------------------------------------
 -- File     :  /cdimage/units/XSL0301/XSL0301_script.lua
 -- Author(s):  Jessica St. Croix, Gordon Duclos
 -- Summary  :  Seraphim Sub Commander Script
@@ -39,10 +38,12 @@ XSL0301 = ClassUnit(CommandUnit) {
         },
     },
 
+    ---@param self XSL0301
     __init = function(self)
         CommandUnit.__init(self, 'LightChronatronCannon')
     end,
 
+    ---@param self XSL0301
     OnCreate = function(self)
         CommandUnit.OnCreate(self)
         self:SetCapturable(false)
@@ -52,177 +53,193 @@ XSL0301 = ClassUnit(CommandUnit) {
         self:GetWeaponByLabel('AutoOverCharge').NeedsUpgrade = true
     end,
 
+    ---@param self XSL0301
+    ---@param builder Unit
+    ---@param layer Layer
     StartBeingBuiltEffects = function(self, builder, layer)
         CommandUnit.StartBeingBuiltEffects(self, builder, layer)
         self.Trash:Add(ForkThread(EffectUtil.CreateSeraphimBuildThread, self, builder, self.OnBeingBuiltEffectsBag, 2))
     end,
 
+    ---@param self XSL0301
+    ---@param unitBeingBuilt Unit
+    ---@param order string unused
     CreateBuildEffects = function(self, unitBeingBuilt, order)
-        EffectUtil.CreateSeraphimUnitEngineerBuildingEffects(self, unitBeingBuilt, self.BuildEffectBones,
-            self.BuildEffectsBag)
+        EffectUtil.CreateSeraphimUnitEngineerBuildingEffects(self, unitBeingBuilt, self.BuildEffectBones, self.BuildEffectsBag)
     end,
 
-    EnhancementUpgrades = {
+    -- =====================================================================================================================
+    -- EMHANCEMENTS
 
-        Teleport = function (self, bp)
-            --TODO: Not Applying Upgrade
-            self:AddCommandCap('RULEUCC_Teleport')
-        end,
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement unused
+    ProcessEnhancementTeleporter = function(self, bp)
+        self:AddCommandCap('RULEUCC_Teleport')
+    end,
 
-        TeleportRemove = function(self, bp)
-            self:RemoveCommandCap('RULEUCC_Teleport')
-        end,
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement unused
+    ProcessEnhancementTeleporterRemove = function(self, bp)
+        self:RemoveCommandCap('RULEUCC_Teleport')
+    end,
 
-        Missile = function(self, bp)
-            self:AddCommandCap('RULEUCC_Tactical')
-            self:AddCommandCap('RULEUCC_SiloBuildTactical')
-            self:SetWeaponEnabledByLabel('Missile', true)
-        end,
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement unused
+    ProcessEnhancementMissile = function(self, bp)
+        self:AddCommandCap('RULEUCC_Tactical')
+        self:AddCommandCap('RULEUCC_SiloBuildTactical')
+        self:SetWeaponEnabledByLabel('Missile', true)
+    end,
 
-        MissileRemove = function(self, bp)
-            self:RemoveCommandCap('RULEUCC_Tactical')
-            self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
-            self:SetWeaponEnabledByLabel('Missile', false)
-        end,
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement unused
+    ProcessEnhancementMissileRemove = function(self, bp)
+        self:RemoveCommandCap('RULEUCC_Tactical')
+        self:RemoveCommandCap('RULEUCC_SiloBuildTactical')
+        self:SetWeaponEnabledByLabel('Missile', false)
+    end,
 
-        OverCharge = function(self, bp)
-            --TODO: Not Applying Upgrade
-            self:AddCommandCap('RULEUCC_Overcharge')
-            self:GetWeaponByLabel('OverCharge').NeedsUpgrade = false
-            self:GetWeaponByLabel('AutoOverCharge').NeedsUpgrade = false
-        end,
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement
+    ProcessEnhancementShield = function(self, bp)
+        self:AddToggleCap('RULEUTC_ShieldToggle')
+        self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
+        self:SetMaintenanceConsumptionActive()
+        self:CreateShield(bp)
+    end,
 
-        OverChargeRemove = function(self, bp)
-            self:RemoveCommandCap('RULEUCC_Overcharge')
-            self:SetWeaponEnabledByLabel('OverCharge', false)
-            self:SetWeaponEnabledByLabel('AutoOverCharge', false)
-            self:GetWeaponByLabel('OverCharge').NeedsUpgrade = true
-            self:GetWeaponByLabel('AutoOverCharge').NeedsUpgrade = true
-        end,
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement unused
+    ProcessEnhancementShieldRemove = function(self, bp)
+        self:DestroyShield()
+        self:SetMaintenanceConsumptionInactive()
+        self:RemoveToggleCap('RULEUTC_ShieldToggle')
+    end,
 
-        EngineeringThroughput = function (self, bp)
-            if not Buffs['SeraphimSCUBuildRate'] then
-                BuffBlueprint {
-                    Name = 'SeraphimSCUBuildRate',
-                    DisplayName = 'SeraphimSCUBuildRate',
-                    BuffType = 'SCUBUILDRATE',
-                    Stacks = 'ADD',
-                    Duration = -1,
-                    Affects = {
-                        BuildRate = {
-                            Add = bp.NewBuildRate + self.Blueprint.Economy.BuildRate,
-                            Mult = 1,
-                        },
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement unused
+    ProcessEnhancementOvercharge = function(self, bp)
+        self:AddCommandCap('RULEUCC_Overcharge')
+        self:GetWeaponByLabel('OverCharge').NeedsUpgrade = false
+        self:GetWeaponByLabel('AutoOverCharge').NeedsUpgrade = false
+    end,
+
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement unused
+    ProcessEnhancementOverchargeRemove = function(self, bp)
+        self:RemoveCommandCap('RULEUCC_Overcharge')
+        self:SetWeaponEnabledByLabel('OverCharge', false)
+        self:SetWeaponEnabledByLabel('AutoOverCharge', false)
+        self:GetWeaponByLabel('OverCharge').NeedsUpgrade = true
+        self:GetWeaponByLabel('AutoOverCharge').NeedsUpgrade = true
+    end,
+
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement 
+    ProcessEnhancementEngineeringThroughput = function(self, bp)
+        if not Buffs['SeraphimSCUBuildRate'] then
+            BuffBlueprint {
+                Name = 'SeraphimSCUBuildRate',
+                DisplayName = 'SeraphimSCUBuildRate',
+                BuffType = 'SCUBUILDRATE',
+                Stacks = 'REPLACE',
+                Duration = -1,
+                Affects = {
+                    BuildRate = {
+                        Add = bp.NewBuildRate - self.Blueprint.Economy.BuildRate,
+                        Mult = 1,
                     },
-                }
-            end
-            Buff.ApplyBuff(self, 'SeraphimSCUBuildRate')
-        end,
+                },
+            }
+        end
+        Buff.ApplyBuff(self, 'SeraphimSCUBuildRate')
+    end,
 
-        EngineeringThroughputRemove = function(self, bp)
-            if Buff.HasBuff(self, 'SeraphimSCUBuildRate') then
-                Buff.RemoveBuff(self, 'SeraphimSCUBuildRate')
-            end
-        end,
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement
+    ProcessEnhancementEngineeringThroughputRemove = function(self, bp)
+        if Buff.HasBuff(self, 'SeraphimSCUBuildRate') then
+            Buff.RemoveBuff(self, 'SeraphimSCUBuildRate')
+        end
+    end,
 
-        DamageStabilization = function (self, bp)
-            if not Buffs['SeraphimSCUDamageStabilization'] then
-                BuffBlueprint {
-                    Name = 'SeraphimSCUDamageStabilization',
-                    DisplayName = 'SeraphimSCUDamageStabilization',
-                    BuffType = 'SCUUPGRADEDMG',
-                    Stacks = 'ALWAYS',
-                    Duration = -1,
-                    Affects = {
-                        MaxHealth = {
-                            Add = bp.NewHealth,
-                            Mult = 1.0,
-                        },
-                        Regen = {
-                            Add = bp.NewRegenRate,
-                            Mult = 1.0,
-                        },
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement
+    ProcessEnhancementDamageStabilization = function (self, bp)
+        if not Buffs['SeraphimSCUDamageStabilization'] then
+            BuffBlueprint {
+                Name = 'SeraphimSCUDamageStabilization',
+                DisplayName = 'SeraphimSCUDamageStabilization',
+                BuffType = 'SCUUPGRADEDMG',
+                Stacks = 'ALWAYS',
+                Duration = -1,
+                Affects = {
+                    MaxHealth = {
+                        Add = bp.NewHealth,
+                        Mult = 1.0,
                     },
-                }
-            end
-            if Buff.HasBuff(self, 'SeraphimSCUDamageStabilization') then
-                Buff.RemoveBuff(self, 'SeraphimSCUDamageStabilization')
-            end
-            Buff.ApplyBuff(self, 'SeraphimSCUDamageStabilization')
-        end,
+                    Regen = {
+                        Add = bp.NewRegenRate,
+                        Mult = 1.0,
+                    },
+                },
+            }
+        end
+        if Buff.HasBuff(self, 'SeraphimSCUDamageStabilization') then
+            Buff.RemoveBuff(self, 'SeraphimSCUDamageStabilization')
+        end
+        Buff.ApplyBuff(self, 'SeraphimSCUDamageStabilization')
+    end,
 
-        DamageStabilizationRemove = function (self, bp)
-            if Buff.HasBuff(self, 'SeraphimSCUDamageStabilization') then
-                Buff.RemoveBuff(self, 'SeraphimSCUDamageStabilization')
-            end
-        end,
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement unused
+    ProcessEnhancementDamageStabilizationRemove = function (self, bp)
+        if Buff.HasBuff(self, 'SeraphimSCUDamageStabilization') then
+            Buff.RemoveBuff(self, 'SeraphimSCUDamageStabilization')
+        end
+    end,
 
-        EnhancedSensors = function(self, bp)
-            self:SetIntelRadius('Vision', bp.NewVisionRadius or 104)
-            self:SetIntelRadius('Omni', bp.NewOmniRadius or 104)
-            local wepA = self:GetWeaponByLabel('LightChronatronCannon')
-            wepA:ChangeMaxRadius(bp.NewMaxRadius or 35)
-            local wepB = self:GetWeaponByLabel('OverCharge')
-            wepB:ChangeMaxRadius(35)
-            local aoc = self:GetWeaponByLabel('AutoOverCharge')
-            aoc:ChangeMaxRadius(35)
-        end,
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement 
+    ProcessEnhancementEnhancedSensors = function(self, bp)
+        self:SetIntelRadius('Vision', bp.NewVisionRadius or 104)
+        self:SetIntelRadius('Omni', bp.NewOmniRadius or 104)
+        local wep = self:GetWeaponByLabel('LightChronatronCannon')
+        wep:ChangeMaxRadius(bp.NewMaxRadius or 35)
+        local wep = self:GetWeaponByLabel('OverCharge')
+        wep:ChangeMaxRadius(35)
+        local aoc = self:GetWeaponByLabel('AutoOverCharge')
+        aoc:ChangeMaxRadius(35)
+    end,
 
-        EnhancedSensorsRemove = function(self, bp)
-            local bpIntel = self.Blueprint.Intel
-            self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-            self:SetIntelRadius('Omni', bpIntel.OmniRadius or 16)
-            local wepA = self:GetWeaponByLabel('LightChronatronCannon')
-            wepA:ChangeMaxRadius(bp.NewMaxRadius or 25)
-            local wepB = self:GetWeaponByLabel('OverCharge')
-            wepB:ChangeMaxRadius(25)
-            local aoc = self:GetWeaponByLabel('AutoOverCharge')
-            aoc:ChangeMaxRadius(25)
-        end,
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement 
+    ProcessEnhancementEnhancedSensorsRemove = function(self, bp)
+        local bpIntel = self.Blueprint.Intel
+        self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
+        self:SetIntelRadius('Omni', bpIntel.OmniRadius or 16)
+        local wep = self:GetWeaponByLabel('LightChronatronCannon')
+        wep:ChangeMaxRadius(bp.NewMaxRadius or 25)
+        local wep = self:GetWeaponByLabel('OverCharge')
+        wep:ChangeMaxRadius(bp.NewMaxRadius or 25)
+        local aoc = self:GetWeaponByLabel('AutoOverCharge')
+        aoc:ChangeMaxRadius(bp.NewMaxRadius or 25)
+    end,
 
-        DamageEnhancement = function(self, bp)
-            local wep = self:GetWeaponByLabel('LightChronatronCannon')
-            wep:AddDamageRadiusMod(bp.NewDamageRadius)
-            wep:ChangeMaxRadius(bp.NewMaxRange or 30)
-        end,
-
-        DamageEnhancementRemove = function(self, bp)
-            local wep = self:GetWeaponByLabel('LightChronatronCannon')
-            wep:AddDamageRadiusMod(bp.NewDamageRadius)
-            wep:ChangeMaxRadius(bp.NewMaxRange or 25)
-        end,
-
-        ResourceAllocation = function (self,bp)
-            local bpEcon = self.Blueprint.Economy
-            self:SetProductionPerSecondEnergy((bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy) or 0)
-            self:SetProductionPerSecondMass((bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass) or 0)
-
-            --TODO: Add Damage Death Weapon
-
-            --TODO: Add Radius to Death Weapon
-        end,
-
-        ResourceAllocationRemove = function (self,bp)
-            local bpEcon = self.Blueprint.Economy
-            self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
-            self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
-
-            --TODO: Add Remove Damage Death Weapon
-
-            --TODO: Add Remove Radius to Death Weapon
-        end,
-
-    },
-
+    ---@param self XSL0301
+    ---@param enh Enhancement
     CreateEnhancement = function(self, enh)
         CommandUnit.CreateEnhancement(self, enh)
         local bp = self.Blueprint.Enhancements[enh]
         if not bp then return end
 
-        if self.EnhancementUpgrades[enh] then
-            self.EnhancementUpgrades[enh](self, bp)
+        local ref = 'ProcessEnhancement' .. enh
+        local handler = self[ref]
+
+        if handler then
+            handler(self, bp)
         else
-            WARN('SCURebalance: Enhancement '..repr(enh)..' failed. Has no Script')
+            WARN("Missing enhancement: ", enh, " for unit: ", self:GetUnitId(), " note that the function name should be called: ", ref)
         end
     end,
 }
