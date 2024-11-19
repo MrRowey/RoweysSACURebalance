@@ -1,0 +1,183 @@
+UnitBlueprint{
+    Description = "<LOC urb0304_desc>Quantum Gateway",
+    AI = {
+        TargetBones = {
+            "Target_01",
+            "Target_02",
+            "Target_03",
+            "Target_04",
+            "Target_05",
+            "Target_06",
+        },
+    },
+    Audio = {
+        ActiveLoop     = Sound { Bank = 'URB',        Cue = 'URB0304_Active',             LodCutoff = 'UnitMove_LodCutoff' },
+        Construct      = Sound { Bank = 'URB',        Cue = 'URB0304_Construct_Start',    LodCutoff = 'UnitMove_LodCutoff' },
+        ConstructLoop  = Sound { Bank = 'URB',        Cue = 'URB0304_Construct_Loop',     LodCutoff = 'UnitMove_LodCutoff' },
+        DeathExplosion = Sound { Bank = 'URLDestroy', Cue = 'URB_Destroy_Lrg_PreDestroy', LodCutoff = 'UnitMove_LodCutoff' },
+        Destroyed      = Sound { Bank = 'URLDestroy', Cue = 'URB_Destroy_Huge',           LodCutoff = 'UnitMove_LodCutoff' },
+        DoneBeingBuilt = Sound { Bank = 'URB',        Cue = 'URB0304_Activate',           LodCutoff = 'UnitMove_LodCutoff' },
+        UISelection    = Sound { Bank = 'Interface',  Cue = 'Cybran_Select_Structure',    LodCutoff = 'UnitMove_LodCutoff' },
+    },
+    AverageDensity = 10000,
+    BuildIconSortPriority = 220,
+    Categories = {
+        "BUILTBYTIER3COMMANDER",
+        "BUILTBYTIER3ENGINEER",
+        "CYBRAN",
+        "DRAGBUILD",
+        "FACTORY",
+        "GATE",
+        "PRODUCTSC1",
+        "RALLYPOINT",
+        "RECLAIMABLE",
+        "SELECTABLE",
+        "SHOWQUEUE",
+        "SIZE20",
+        "SORTSTRATEGIC",
+        "STRUCTURE",
+        "TECH3",
+        "VISIBLETORECON",
+    },
+    Defense = {
+        ArmorType = "Structure",
+        EconomyThreatLevel = 440,
+        Health = 7500,
+        MaxHealth = 7500,
+    },
+    Display = {
+        BlinkingLights = {
+            { BLBone = 0,     BLOffsetX = -2.3,  BLOffsetY = 2.3,   BLOffsetZ = 0.15,  BLScale = 1 },
+            { BLBone = 0,     BLOffsetX = 2.4,   BLOffsetY = 2.3,   BLOffsetZ = 0.15,  BLScale = 1 },
+            { BLBone = 0,     BLOffsetX = -2.3,  BLOffsetY = -2.4,  BLOffsetZ = 0.15,  BLScale = 1 },
+            { BLBone = 0,     BLOffsetX = 2.4,   BLOffsetY = -2.4,  BLOffsetZ = 0.15,  BLScale = 1 },
+        },
+        BlinkingLightsFx = {
+            Green = "/effects/emitters/light_green_03_emit.bp",
+            Red = "/effects/emitters/light_red_03_emit.bp",
+            Yellow = "/effects/emitters/light_yellow_02_emit.bp",
+        },
+        BuildAttachBone = "Attachpoint",
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 200,
+                    ShaderName = "Insect",
+                },
+                {
+                    LODCutoff = 500,
+                    ShaderName = "Insect",
+                    AlbedoName = "urb0304_lod1_albedo.dds",
+                    SpecularName = "urb0304_lod1_specteam.dds",
+                },
+            },
+        },
+        Tarmacs = {
+            {
+                Albedo = "Tarmacs/Tar12x_cybran_01_albedo",
+                DeathLifetime = 300,
+                FadeOut = 150,
+                Length = 12.8,
+                Normal = "Tarmacs/Tar12x_cybran_01_normals",
+                Orientations = { 0, 90, 180, 270 },
+                RemoveWhenDead = false,
+                Width = 12.8,
+            },
+        },
+        UniformScale = 0.07,
+    },
+    Economy = {
+        BuildCostEnergy = 25500,
+        BuildCostMass = 2550,
+        BuildRate = 135,
+        BuildTime = 4100,
+        BuildableCategory = { "BUILTBYQUANTUMGATE CYBRAN" },
+        RebuildBonusIds = { "urb0304" },
+    },
+    Footprint = {
+        SizeX = 7,
+        SizeZ = 7,
+    },
+    General = {
+        CommandCaps = {
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        ConstructionBar = true,
+        FactionName = "Cybran",
+        Icon = "land",
+        SelectionPriority = 5,
+        UnitName = "<LOC urb0304_name>Summoner",
+    },
+    Intel = { VisionRadius = 20 },
+    LifeBarHeight = 0.075,
+    LifeBarOffset = 2.85,
+    LifeBarSize = 6,
+    Physics = {
+        DragCoefficient = 0.2,
+        FlattenSkirt = true,
+        MotionType = "RULEUMT_None",
+        OccupyRects = {
+            -2.5,
+            -0.5,
+            1,
+            3.5,
+            2.5,
+            -0.5,
+            1,
+            3.5,
+        },
+        RaisedPlatforms = {
+            --X,     Z,     height -- Offsets from center
+
+            -1.5,  -1.5,  0.3,     --Top left
+            1.5,   -1.5,  0.3,     --Top right
+            -1.5,  1.5,   0.3,     --Bottom left
+            1.5,   1.5,   0.3,     --Bottom right
+
+            -1.5,  -3.4,  0,       --Top left
+            1.5,   -3.4,  0,       --Top right
+            -1.5,  -1.5,  0.3,     --Bottom left
+            1.5,   -1.5,  0.3,     --Bottom right
+
+            -1.5,  1.5,   0.3,     --Top left
+            1.5,   1.5,   0.3,     --Top right
+            -1.5,  3.4,   0,       --Bottom left
+            1.5,   3.4,   0,       --Bottom right
+        },
+        RollOffPoints = {
+            { UnitSpin = 0,     X = 0,     Y = 0,     Z = -3 },
+            { UnitSpin = 180,   X = 0,     Y = 0,     Z = 3 },
+        },
+        SkirtOffsetX = -1.5,
+        SkirtOffsetZ = -1.5,
+        SkirtSizeX = 10,
+        SkirtSizeZ = 10,
+    },
+    SelectionSizeX = 3.95,
+    SelectionSizeZ = 3.65,
+    SelectionThickness = 0.26,
+    SizeX = 4.75,
+    SizeY = 2,
+    SizeZ = 3.5,
+    StrategicIconName = "icon_structure3_transport",
+    StrategicIconSortPriority = 175,
+    Transport = {
+        Class2AttachSize = 1,
+        Class3AttachSize = 1,
+        ClassGenericUpTo = 3,
+    },
+    Wreckage = {
+        Blueprint = "/props/DefaultWreckage/DefaultWreckage_prop.bp",
+        EnergyMult = 0,
+        HealthMult = 0.9,
+        MassMult = 0.9,
+        ReclaimTimeMultiplier = 1,
+        WreckageLayers = { Land = true },
+    },
+}
