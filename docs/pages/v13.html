@@ -4,8 +4,8 @@
     <meta charset="UTF-8"/>
     <meta name="description" content="FAF Beta Balance Patchnote page"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>FAF Beta Balance</title>
-    <link rel="stylesheet" href="./styles/balance.css"/>
+    <title>Version 13</title>
+    <link rel="stylesheet" href="../styles/balance.css"/>
   </head>
   <body>
     <main class="Grid">
@@ -13,52 +13,99 @@
 
         <div id="Intro">
           <header class="FlexboxContainer" >
-            <h1 class="FlexGrow-1">FAF Balance Testing</h1>
-            <h4>Date Updated: 09/07/2024</h4>
+            <h1 class="FlexGrow-1">SACU Patchnotes V13</h1>
           </header>
           
-          <h3>Currently No new Changes</h3>
-
           <p>Welcome to the FAF Balance Testing patchnotes. The changes listed here are all subject to change.</p>
-          <p><b>Disclaimer</b>: Changes here may be broken or have unforeseen side effects if you encounter anything please report it to the balance team on the <a href="https://discord.gg/pK94Dk9hNz"> Game Bug Reporting </a> Channel on the FAF Discord</p>
-          <p>All the changes that are currently listed as part of FAFDevelop allow us to evaluate the new balance in actual games. We will keep this page as up-to-date as possible and once we feel the changes are ready for the main game.</p>
-          <h4>-- Balance Team</h4>
+          <h4>-- Rowey</h4>
           <hr>
         </div>
 
-        <h2>Land</h2>
+        <h2>Structures</h2>
         <div id="0">
-          <div id="exp-land" class="Card">
-            <h3>Experimentals</h3>
+          <div class="Card">
+            <h3>Quantum Gates</h3>
 
-            <h4><img src="/assets/images/units/uef/land/T4Fatboy.png">Fatboy</h4>
-            <p>In general the Fatboy has been in an awkward position for a while now. With these changes we try to mitigate some of the perceived issues while preserving the identity of the Fatboy.</p>
+            <p>These changes aim to make gateways more affordable and easier to build, particularly by adjusting the cost and enhancing compatibility with mass fabrication.</p>
 
             <ul>
-              <li>Shield:
-                <ul>
-                  <li>RechargeTime: <s>120</s> <i class="fa-solid fa-arrow-right"></i> 75</li>
-                  <li>RegenRate: <s>100</s> <i class="fa-solid fa-arrow-right"></i> 200</li>
-                  <li>Size: <s>25</s> <i class="fa-solid fa-arrow-right"></i> 24</li>
-                </ul>
-              </li>
-              <li>Anit-Air Guns
-                <ul>
-                  <li>Range: <s>45</s> <i class="fa-solid fa-arrow-right"></i> 55</li>
-                  <li>Damage: <s>20</s> <i class="fa-solid fa-arrow-right"></i> 40</li>
-                </ul>
-              </li>
-              <li>Unit/Collision Size:
-                <ul>
-                  <li>UniformScale: <s>2.22</s> <i class="fa-solid fa-arrow-right"></i> 2.15</li>
-                  <li>SizeX: <s>5.5</s> <i class="fa-solid fa-arrow-right"></i> 5.2</li>
-                  <li>SizeY: <s>1.5</s> <i class="fa-solid fa-arrow-right"></i> 1.4</li>
-                  <li>SizeZ: <s>8</s> <i class="fa-solid fa-arrow-right"></i> 7.2</li>
-                </ul>
-              </li>
+              <li>Health: <s>10000</s> <i class="fa-solid fa-arrow-right"></i> 7500</li>
+              <li>Energy Cost: <s>30000</s> <i class="fa-solid fa-arrow-right"></i> 25500</li>
+              <li>Mass Cost: <s>3000</s> <i class="fa-solid fa-arrow-right"></i> 2550</li>
+              <li>Build Rate: <s>120</s> <i class="fa-solid fa-arrow-right"></i> 135</li>
+              <li>Build Time: <s>4097</s> <i class="fa-solid fa-arrow-right"></i> 4100</li>
+              <li>T2 Fabricator Adjacency Bonus: <s>-0.0075</s> <i class="fa-solid fa-arrow-right"></i> -0.0125</li>
+              <li>T3 Fabricator Adjacency Bonus: <s>-0.0375</s> <i class="fa-solid fa-arrow-right"></i> -0.2</li>
             </ul>
           </div>
         </div>
+
+        <h2>Support Commanders</h2>
+        <div id="1">
+          <div id="Aeon" class="Card">
+            <h3>Aeon</h3>
+
+            <h4>Base changes</h4>
+            <ul>
+              <li>Health: <s>15000</s> <i class="fa-solid fa-arrow-right"></i> 11500</li>
+              <li>Regen: <s>17</s> <i class="fa-solid fa-arrow-right"></i> 14</li>
+              <li>Energy Cost: <s>27100</s> <i class="fa-solid fa-arrow-right"></i> 21450</li>
+              <li>Mass Cost: <s>1950</s> <i class="fa-solid fa-arrow-right"></i> 1650</li>
+              <li>Build Rate: <s>56</s> <i class="fa-solid fa-arrow-right"></i> 40</li>
+              <li>Build Time: <s>14400</s> <i class="fa-solid fa-arrow-right"></i> 11500</li>
+              <li>Damage: <s>300</s> <i class="fa-solid fa-arrow-right"></i> 100</li>
+              <li>Range: <s>30</s> <i class="fa-solid fa-arrow-right"></i> 25</li>
+            </ul>
+          </div>
+
+          <div id="UEF" class="Card">
+            <h3>UEF</h3>
+
+            <h4>Base changes</h4>
+            <ul>
+              <li>Health: <s>16000</s> <i class="fa-solid fa-arrow-right"></i> 13000</li>
+              <li>Regen: <s>20</s> <i class="fa-solid fa-arrow-right"></i> 16</li>
+              <li>Energy Cost: <s>25200</s> <i class="fa-solid fa-arrow-right"></i> 21450</li>
+              <li>Mass Cost: <s>2100</s> <i class="fa-solid fa-arrow-right"></i> 1650</li>
+              <li>Build Rate: <s>56</s> <i class="fa-solid fa-arrow-right"></i> 40</li>
+              <li>Build Time: <s>14400</s> <i class="fa-solid fa-arrow-right"></i> 11500</li>
+              <li>Damage: <s>300</s> <i class="fa-solid fa-arrow-right"></i> 100</li>
+            </ul>
+          </div>
+
+          <div id="Cybran" class="Card">
+            <h3>Cybran</h3>
+
+            <h4>Base changes</h4>
+            <ul>
+              <li>Health: <s>19000</s> <i class="fa-solid fa-arrow-right"></i> 12500</li>
+              <li>Regen: <s>25</s> <i class="fa-solid fa-arrow-right"></i> 21</li>
+              <li>Energy Cost: <s>26400</s> <i class="fa-solid fa-arrow-right"></i> 21450</li>
+              <li>Mass Cost: <s>2000</s> <i class="fa-solid fa-arrow-right"></i> 1650</li>
+              <li>Build Rate: <s>56</s> <i class="fa-solid fa-arrow-right"></i> 40</li>
+              <li>Build Time: <s>14400</s> <i class="fa-solid fa-arrow-right"></i> 11500</li>
+              <li>Damage: <s>300</s> <i class="fa-solid fa-arrow-right"></i> 100</li>
+            </ul>
+          </div>
+
+          <div id="Sera" class="Card">
+            <h3>Sera</h3>
+
+            <h4>Base changes</h4>
+            <ul>
+              <li>Health: <s>15500</s> <i class="fa-solid fa-arrow-right"></i> 12000</li>
+              <li>Regen: <s>15</s> <i class="fa-solid fa-arrow-right"></i> 12</li>
+              <li>Energy Cost: <s>30200</s> <i class="fa-solid fa-arrow-right"></i> 21450</li>
+              <li>Mass Cost: <s>2400</s> <i class="fa-solid fa-arrow-right"></i> 1650</li>
+              <li>Build Rate: <s>56</s> <i class="fa-solid fa-arrow-right"></i> 40</li>
+              <li>Build Time: <s>14400</s> <i class="fa-solid fa-arrow-right"></i> 11500</li>
+              <li>Damage: <s>400</s> <i class="fa-solid fa-arrow-right"></i> 100</li>
+              <li>Energy Production: <s>300</s> <i class="fa-solid fa-arrow-right"></i> 100</li>
+              <li>Mass Production: <s>3</s> <i class="fa-solid fa-arrow-right"></i> 1</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </main>    
   </body>

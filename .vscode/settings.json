@@ -13,5 +13,6 @@
   "Lua.runtime.plugin": "${3rd}/fa/plugin.lua",
   "Lua.diagnostics.globals": ["moho", "ScenarioInfo"],
   "Lua.workspace.library": ["F:\\GitRepos\\fa"],
-  "Lua.workspace.checkThirdParty": false
+  "Lua.workspace.checkThirdParty": false,
+  "cSpell.words": ["Regen"]
 }

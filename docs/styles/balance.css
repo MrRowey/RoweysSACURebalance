@@ -1,8 +1,8 @@
-@import '../style/root.css';
-@import '../style/components/card.css';
-@import '../style/components/images.css';
-@import '../style/components/video.css';
-@import '../style/components/button.css';
+@import '../styles/root.css';
+@import '../styles/components/card.css';
+@import '../styles/components/images.css';
+@import '../styles/components/video.css';
+@import '../styles/components/button.css';
 
 h1,
 h2,
