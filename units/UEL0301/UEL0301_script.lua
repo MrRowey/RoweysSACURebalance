@@ -251,6 +251,10 @@ UEL0301 = ClassUnit(CommandUnit) {
         local bpEcon = self.Blueprint.Economy
         self:SetProductionPerSecondEnergy((bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy) or 0)
         self:SetProductionPerSecondMass((bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass) or 0)
+
+        local death = self:GetWeaponByLabel('DeathWeapon')
+        death:ChangeDamageRadius(bp.NewMaxRadius or 14)
+        death:ChangeDamage(bp.NewDamage or 2000)
     end,
 
     ---@param self UEL0301
@@ -259,6 +263,10 @@ UEL0301 = ClassUnit(CommandUnit) {
         local bpEcon = self.Blueprint.Economy
         self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
         self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
+
+        local death = self:GetWeaponByLabel('DeathWeapon')
+        death:ChangeDamageRadius(bp.DamageRadius or 10)
+        death:ChangeDamage(bp.Damage or 1000)
     end,
 
     ---@param self UEL0301
@@ -279,10 +287,10 @@ UEL0301 = ClassUnit(CommandUnit) {
     ---@param self UEL0301
     ---@param bp UnitBlueprintEnhancement
     ProcessEnhancementRadarJammer = function(self, bp)
-        self:SetIntelRadius('Jammer', bp.NewJammerRadius or 26)
+        self:SetIntelRadius('Jammer', bp.NewJammerRadius or 28)
         self:EnableUnitIntel('Enhancement', 'Jammer')
         self:AddToggleCap('RULEUTC_JammingToggle')
-        self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
+        self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 45)
         self:SetMaintenanceConsumptionActive()
 
         if self.IntelEffects then
@@ -304,7 +312,6 @@ UEL0301 = ClassUnit(CommandUnit) {
         if self.IntelEffectsBag then
             EffectUtil.CleanupEffectBag(self, 'IntelEffectsBag')
         end
-        
     end,
 
     ---@param self UEL0301
@@ -312,6 +319,7 @@ UEL0301 = ClassUnit(CommandUnit) {
     ProcessEnhancementAdvancedCoolingUpgrade = function(self, bp)
         local wep = self:GetWeaponByLabel('RightHeavyPlasmaCannon')
         wep:ChangeRateOfFire(bp.NewRateOfFire)
+        wep:ChangeMaxRadius(bp.NewMaxRadius or 35)
     end,
 
     ---@param self UEL0301
@@ -319,6 +327,7 @@ UEL0301 = ClassUnit(CommandUnit) {
     ProcessEnhancementAdvancedCoolingUpgradeRemove = function(self, bp)
         local wep = self:GetWeaponByLabel('RightHeavyPlasmaCannon')
         wep:ChangeRateOfFire(self.Blueprint.Weapon[1].RateOfFire or 1)
+        wep:ChangeMaxRadius(self.Blueprint.Weapon[1].MaxRadius or 35)
     end,
 
     ---@param self UEL0301
@@ -326,7 +335,7 @@ UEL0301 = ClassUnit(CommandUnit) {
     ProcessEnhancementHighExplosiveOrdnance = function(self, bp)
         local wep = self:GetWeaponByLabel('RightHeavyPlasmaCannon')
         wep:AddDamageRadiusMod(bp.NewDamageRadius)
-        wep:ChangeMaxRadius(bp.NewMaxRadius or 35)
+        wep:ChangeDamage(bp.NewDamage or 300)
     end,
 
     ---@param self UEL0301
@@ -334,7 +343,7 @@ UEL0301 = ClassUnit(CommandUnit) {
     ProcessEnhancementHighExplosiveOrdnanceRemove = function(self, bp)
         local wep = self:GetWeaponByLabel('RightHeavyPlasmaCannon')
         wep:AddDamageRadiusMod(bp.NewDamageRadius)
-        wep:ChangeMaxRadius(bp.NewMaxRadius or 25)
+        wep:ChangeDamage(self.Blueprint.Weapon[1].Damage or 0)
     end,
 
     ---@param self UEL0301
