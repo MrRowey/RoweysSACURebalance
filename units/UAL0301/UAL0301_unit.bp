@@ -205,6 +205,32 @@ UnitBlueprint {
         TeleportTimeMod = 0.0001,
     },
     EnhancementPresets = {
+        Engineer = {
+            Description = "<LOC ual0301_Engineer_desc>SACU (Engineer preset)",
+            BuildIconSortPriority = 20,
+            Enhancements = { "EngineeringFocusingModule" },
+            HelpText = "<LOC ual0301_Engineer_help>Support Armored Command Unit. Enhanced during construction with the rapid replicator enhancement.",
+            SortCategory = "SORTOTHER",
+            UnitName = "<LOC ual0301_Engineer_name>SACU (Engineer preset)",
+        },
+        NanoCombat = {
+            Description = "<LOC ual0301_NanoCombat_desc>SACU (Nano Combatant preset)",
+            BuildIconSortPriority = 25,
+            Enhancements = {
+                "StabilitySuppressant",
+                "SystemIntegrityCompensator",
+            },
+            HelpText = "<LOC ual0301_NanoCombat_help>Support Armored Command Unit. Enhanced during construction with the reacton refractor and nano-repair system enhancements.",
+            SelectionPriority = 1,
+            SortCategory = "SORTOTHER",
+            UnitName = "<LOC ual0301_NanoCombat_name>SACU (Nano Combatant preset)",
+        },
+        RAS = {
+            Description = "<LOC ual0301_RAS_desc>SACU (RAS preset)",
+            BuildIconSortPriority = 10,
+            Enhancements = { "ResourceAllocation" },
+            HelpText = "<LOC ual0301_RAS_help>Support Armored Command Unit. Enhanced during construction with a Resource Allocation System.",
+            SortCategory = "SORTOTHER",
             UnitName = "<LOC ual0301_RAS_name>SACU (RAS preset)",
         },
         Rambo = {
