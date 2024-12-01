@@ -203,7 +203,7 @@ UnitBlueprint{
         BuildableCategory = { "BUILTBYTIER3ENGINEER SERAPHIM" },
         MaxBuildDistance = 10,
         NaturalProducer = true,
-        ProductionPerSecondEnergy = 100,
+        ProductionPerSecondEnergy = 20,
         ProductionPerSecondMass = 1,
         StorageEnergy = 750,
         StorageMass = 450,
