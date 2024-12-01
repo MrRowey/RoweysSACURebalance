@@ -424,7 +424,7 @@ UnitBlueprint{
             BuildCostEnergy = 121500,
             BuildCostMass = 5000,
             BuildTime = 9000,
-            Icon = "isb",
+            Icon = "ras",
             Name = "<LOC enhancements_0069>Resource Allocation System",
             ProductionPerSecondEnergy = 1000,
             ProductionPerSecondMass = 10,
@@ -439,8 +439,8 @@ UnitBlueprint{
             BuildCostEnergy = 1,
             BuildCostMass = 1,
             BuildTime = 0.1,
-            Icon = "isb",
             HideBones = { "Back_Upgrade" },
+            Icon = "ras",
             Name = "<LOC enhancements_0070>Remove Resource Allocation System",
             Prerequisite = "ResourceAllocation",
             RemoveEnhancements = {
