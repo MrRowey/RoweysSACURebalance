@@ -227,6 +227,22 @@ XSL0301 = ClassUnit(CommandUnit) {
     end,
 
     ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement
+    ProcessEnhancementResourceAllocation = function(self, bp)
+        local bpEcon = self.Blueprint.Economy
+        self:SetProductionPerSecondEnergy((bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy) or 0)
+        self:SetProductionPerSecondMass((bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass) or 0)
+    end,
+
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement unused
+    ProcessEnhancementResourceAllocationRemove = function(self, bp)
+        local bpEcon = self.Blueprint.Economy
+        self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
+        self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
+    end,
+
+    ---@param self XSL0301
     ---@param enh Enhancement
     CreateEnhancement = function(self, enh)
         CommandUnit.CreateEnhancement(self, enh)

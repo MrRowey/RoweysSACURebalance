@@ -265,6 +265,14 @@ UnitBlueprint{
             SortCategory = "SORTOTHER",
             UnitName = "<LOC xsl0301_NanoCombat_name>SACU (Nano Combatant preset)",
         },
+        RAS = {
+            Description = "<LOC ual0301_RAS_desc>SACU (RAS preset)",
+            BuildIconSortPriority = 10,
+            Enhancements = { "ResourceAllocation" },
+            HelpText = "<LOC ual0301_RAS_help>Support Armored Command Unit. Enhanced during construction with a Resource Allocation System.",
+            SortCategory = "SORTOTHER",
+            UnitName = "<LOC ual0301_RAS_name>SACU (RAS preset)",
+        },
     },
     Enhancements = {
         -- Left
