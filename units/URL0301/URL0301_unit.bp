@@ -418,7 +418,7 @@ UnitBlueprint {
             BuildTime = 3900,
             Icon = "fc",
             Name = "<LOC enhancements_0093>Disintegrator Amplifier",
-            NewDamageMod = 250,
+            NewDamageMod = 400,
             NewMaxRadius = 30,
             Slot = "RCH",
             UpgradeUnitAmbientBones = { "URL0301" },
