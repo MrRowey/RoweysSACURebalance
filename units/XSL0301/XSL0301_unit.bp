@@ -428,7 +428,7 @@ UnitBlueprint{
             ShowBones = { "Back_Upgrade" },
             Slot = "LCH",
             UpgradeEffectBones = { "Back_Upgrade" },
-            UpgradeUnitAmbientBones = { "UEL0301" },
+            UpgradeUnitAmbientBones = { "Torso" },
         },
         ResourceAllocationRemove = {
             BuildCostEnergy = 1,
