@@ -453,8 +453,8 @@ UnitBlueprint{
             Icon = "sre",
             Name = "<LOC enhancements_0141>Enhanced Sensor System",
             NewMaxRadius = 30,
-            NewOmniRadius = 65,
-            NewVisionRadius = 35,
+            NewOmniRadius = 64,
+            NewVisionRadius = 36,
             Slot = "RCH",
             UpgradeEffectBones = {
                 "Right_Arm_Muzzle",
