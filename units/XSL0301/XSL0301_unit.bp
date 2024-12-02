@@ -455,7 +455,6 @@ UnitBlueprint{
             NewMaxRadius = 30,
             NewOmniRadius = 65,
             NewVisionRadius = 35,
-            ShowBones = { "Back_Upgrade" },
             Slot = "RCH",
             UpgradeEffectBones = {
                 "Right_Arm_Muzzle",
