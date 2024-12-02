@@ -207,10 +207,10 @@ UAL0301 = ClassUnit(CommandUnit) {
     ---@param bp UnitBlueprintEnhancement
     ProcessEnhancementStabilitySuppressantRemove = function(self, bp)
         local wep = self:GetWeaponByLabel('RightReactonCannon')
-        wep:AddDamageRadiusMod(bp.NewDamageRadiusMod or 0)
-        wep:ChangeMaxRadius(bp.NewMaxRadius or 30)
         local removedBp = self.Blueprint.Enhancements["StabilitySuppressant"]
         wep:AddDamageMod(-removedBp.NewDamageMod or 0)
+        wep:AddDamageRadiusMod(-removedBp.NewDamageRadiusMod or 0)
+        wep:ChangeMaxRadius(wep.Blueprint.MaxRadius)
     end,
 
     ---@param self UAL0301

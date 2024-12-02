@@ -314,7 +314,6 @@ UnitBlueprint {
             BuildTime = 0.1,
             Icon = "ss",
             Name = "<LOC enhancements_0032>Remove Reacton Refractor",
-            NewDamageRadiusMod = -8,
             Prerequisite = "StabilitySuppressant",
             RemoveEnhancements = {
                 "StabilitySuppressant",
