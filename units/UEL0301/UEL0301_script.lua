@@ -228,13 +228,9 @@ UEL0301 = ClassUnit(CommandUnit) {
     ---@param self UEL0301
     ---@param bp UnitBlueprintEnhancement
     ProcessEnhancementShieldGeneratorField = function(self, bp)
-        self:DestroyShield()
-        self:ForkThread(function()
-            WaitTicks(1)
-            self:CreateShield(bp)
-            self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
-            self:SetMaintenanceConsumptionActive()
-        end)
+        self:CreateShield(bp)
+        self:SetEnergyMaintenanceConsumptionOverride(bp.MaintenanceConsumptionPerSecondEnergy or 0)
+        self:SetMaintenanceConsumptionActive()
     end,
 
     ---@param self UEL0301
@@ -297,21 +293,6 @@ UEL0301 = ClassUnit(CommandUnit) {
             self.IntelEffectsBag = {}
             self:CreateTerrainTypeEffects(self.IntelEffects, 'FXIdle',  self.Layer, nil, self.IntelEffectsBag)
         end
-
-    end,
-
-    ---@param self UEL0301
-    ---@param bp UnitBlueprintEnhancement unused
-    ProcessEnhancementRadarJammerRemove = function(self, bp)
-        self.RadarJammerEnh = false
-        self:SetIntelRadius('Jammer', 0)
-        self:DisableUnitIntel('Enhancement', 'Jammer')
-        self:RemoveToggleCap('RULEUTC_JammingToggle')
-        self:SetMaintenanceConsumptionInactive()
-
-        if self.IntelEffectsBag then
-            EffectUtil.CleanupEffectBag(self, 'IntelEffectsBag')
-        end
     end,
 
     ---@param self UEL0301
@@ -334,16 +315,19 @@ UEL0301 = ClassUnit(CommandUnit) {
     ---@param bp UnitBlueprintEnhancement
     ProcessEnhancementHighExplosiveOrdnance = function(self, bp)
         local wep = self:GetWeaponByLabel('RightHeavyPlasmaCannon')
-        wep:AddDamageRadiusMod(bp.NewDamageRadius)
-        wep:ChangeDamage(bp.NewDamage or 300)
+        wep:AddDamageRadiusMod(bp.NewDamageRadius or 0)
+        wep:AddDamageMod(bp.NewDamageMod or 200)
+        wep:ChangeMaxRadius(bp.NewMaxRadius or 35)
     end,
 
     ---@param self UEL0301
     ---@param bp UnitBlueprintEnhancement
     ProcessEnhancementHighExplosiveOrdnanceRemove = function(self, bp)
         local wep = self:GetWeaponByLabel('RightHeavyPlasmaCannon')
-        wep:AddDamageRadiusMod(bp.NewDamageRadius)
-        wep:ChangeDamage(self.Blueprint.Weapon[1].Damage or 0)
+        local removedBP = self.Blueprint.Enhancements["HighExplosiveOrdnance"]
+        wep:AddDamageRadiusMod(-(removedBP.NewDamageRadius or 0))
+        wep:AddDamageMod(-(removedBP.NewDamageMod or 200))
+        wep:ChangeMaxRadius(wep.Blueprint.MaxRadius)
     end,
 
     ---@param self UEL0301

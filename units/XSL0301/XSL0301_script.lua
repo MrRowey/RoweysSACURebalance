@@ -207,9 +207,9 @@ XSL0301 = ClassUnit(CommandUnit) {
         local wep = self:GetWeaponByLabel('LightChronatronCannon')
         wep:ChangeMaxRadius(bp.NewMaxRadius or 35)
         local wep = self:GetWeaponByLabel('OverCharge')
-        wep:ChangeMaxRadius(35)
+        wep:ChangeMaxRadius(bp.NewMaxRadius or 35)
         local aoc = self:GetWeaponByLabel('AutoOverCharge')
-        aoc:ChangeMaxRadius(35)
+        aoc:ChangeMaxRadius(bp.NewMaxRadius or 35)
     end,
 
     ---@param self XSL0301
@@ -224,6 +224,22 @@ XSL0301 = ClassUnit(CommandUnit) {
         wep:ChangeMaxRadius(bp.NewMaxRadius or 25)
         local aoc = self:GetWeaponByLabel('AutoOverCharge')
         aoc:ChangeMaxRadius(bp.NewMaxRadius or 25)
+    end,
+
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement
+    ProcessEnhancementResourceAllocation = function(self, bp)
+        local bpEcon = self.Blueprint.Economy
+        self:SetProductionPerSecondEnergy((bp.ProductionPerSecondEnergy + bpEcon.ProductionPerSecondEnergy) or 0)
+        self:SetProductionPerSecondMass((bp.ProductionPerSecondMass + bpEcon.ProductionPerSecondMass) or 0)
+    end,
+
+    ---@param self XSL0301
+    ---@param bp UnitBlueprintEnhancement unused
+    ProcessEnhancementResourceAllocationRemove = function(self, bp)
+        local bpEcon = self.Blueprint.Economy
+        self:SetProductionPerSecondEnergy(bpEcon.ProductionPerSecondEnergy or 0)
+        self:SetProductionPerSecondMass(bpEcon.ProductionPerSecondMass or 0)
     end,
 
     ---@param self XSL0301
