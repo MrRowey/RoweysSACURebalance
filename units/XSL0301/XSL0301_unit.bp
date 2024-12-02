@@ -302,36 +302,6 @@ UnitBlueprint{
             },
             Slot = "LCH",
         },
-        DamageEnhancement = {
-            BuildCostEnergy = 49950,
-            BuildCostMass = 1350,
-            BuildTime = 6345,
-            Icon = "cba",
-            Name = "<LOC enhancements_0154_faf>Enhanced Chronatron Cannon",
-            NewDamageRadius = 2.7,
-            NewMaxRadius = 30,
-            Slot = "LCH",
-            UpgradeEffectBones = {
-                "Left_Arm_Muzzle",
-                "Left_Arm_Barrel",
-            },
-            UpgradeUnitAmbientBones = { "Torso" },
-        },
-        DamageEnhancementRemove = {
-            BuildCostEnergy = 1,
-            BuildCostMass = 1,
-            BuildTime = 0.1,
-            NewDamageRadius = -2.7,
-            NewMaxRadius = 25,
-            Icon = "cba",
-            Name = "<LOC enhancements_0155_faf>Remove Enhanced Chronatron Cannon",
-            Prerequisite = "DamageEnhancement",
-            RemoveEnhancements = {
-                "DamageEnhancement",
-                "DamageEnhancementRemove",
-            },
-            Slot = "LCH",
-        },
 
         -- Back
         DamageStabilization = {
