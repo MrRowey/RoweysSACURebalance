@@ -416,7 +416,7 @@ UnitBlueprint{
             Icon = "heo",
             Name = "<LOC enhancements_0063>Heavy Plasma Refractor",
             NewDamageRadius = 2.5,
-            NewDamage = 300,
+            NewDamageMod = 200,
             ShowBones = { "SAM" },
             Slot = "RCH",
             UpgradeEffectBones = {
@@ -432,8 +432,6 @@ UnitBlueprint{
             HideBones = { "SAM" },
             Icon = "heo",
             Name = "<LOC enhancements_0064>Remove Heavy Plasma Refractor",
-            NewDamageRadius = -2.5,
-            NewDamage = -300,
             Prerequisite = "HighExplosiveOrdnance ",
             RemoveEnhancements = {
                 "HighExplosiveOrdnance ",

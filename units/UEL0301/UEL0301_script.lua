@@ -296,24 +296,6 @@ UEL0301 = ClassUnit(CommandUnit) {
     end,
 
     ---@param self UEL0301
-    ---@param bp UnitBlueprintEnhancement unused
-    ProcessEnhancementSensorRangeEnhancerRemove = function(self, bp)
-        local bpIntel = self.Blueprint.Intel
-        self:SetIntelRadius('Vision', bpIntel.VisionRadius or 26)
-        self:SetIntelRadius('Omni', bpIntel.OmniRadius or 26)
-        -- jammer part
-        self.RadarJammerEnh = false
-        self:SetIntelRadius('Jammer', 0)
-        self:DisableUnitIntel('Enhancement', 'Jammer')
-        self:RemoveToggleCap('RULEUTC_JammingToggle')
-        self:SetMaintenanceConsumptionInactive()
-
-        if self.IntelEffectsBag then
-            EffectUtil.CleanupEffectBag(self, 'IntelEffectsBag')
-        end
-    end,
-
-    ---@param self UEL0301
     ---@param bp UnitBlueprintEnhancement
     ProcessEnhancementAdvancedCoolingUpgrade = function(self, bp)
         local wep = self:GetWeaponByLabel('RightHeavyPlasmaCannon')
@@ -333,7 +315,7 @@ UEL0301 = ClassUnit(CommandUnit) {
     ---@param bp UnitBlueprintEnhancement
     ProcessEnhancementHighExplosiveOrdnance = function(self, bp)
         local wep = self:GetWeaponByLabel('RightHeavyPlasmaCannon')
-        wep:AddDamageRadiusMod(bp.NewDamageRadius)
+        wep:AddDamageRadiusMod(bp.NewDamageRadius or 0)
         wep:AddDamageMod(bp.NewDamageMod or 200)
         wep:ChangeMaxRadius(bp.NewMaxRadius or 35)
     end,
@@ -342,9 +324,10 @@ UEL0301 = ClassUnit(CommandUnit) {
     ---@param bp UnitBlueprintEnhancement
     ProcessEnhancementHighExplosiveOrdnanceRemove = function(self, bp)
         local wep = self:GetWeaponByLabel('RightHeavyPlasmaCannon')
-        wep:AddDamageRadiusMod(bp.NewDamageRadius)
-        wep:AddDamageMod(-(self.Blueprint.Enhancements["HighExplosiveOrdnance"].NewDamageMod or 200))
-        wep:ChangeMaxRadius(bp.NewMaxRadius or 25)
+        local removedBP = self.Blueprint.Enhancements["HighExplosiveOrdnance"]
+        wep:AddDamageRadiusMod(-(removedBP.NewDamageRadius or 0))
+        wep:AddDamageMod(-(removedBP.NewDamageMod or 200))
+        wep:ChangeMaxRadius(wep.Blueprint.MaxRadius)
     end,
 
     ---@param self UEL0301
