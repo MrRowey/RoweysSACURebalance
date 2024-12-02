@@ -1,8 +1,11 @@
-UnitBlueprint {
+UnitBlueprint{
     Description = "<LOC uel0301_desc>Support Armored Command Unit",
     AI = {
         GuardScanRadius = 26,
-        TargetBones = { "UEL0301", "Head", },
+        TargetBones = {
+            "UEL0301",
+            "Head",
+        },
     },
     Audio = {
         CaptureLoop           = Sound { Bank = 'UEL',         Cue = 'UEL0301_Capture_Loop',    LodCutoff = 'UnitMove_LodCutoff' },
@@ -24,6 +27,7 @@ UnitBlueprint {
         StopMove              = Sound { Bank = 'UEL',         Cue = 'UEL0301_Move_Stop',       LodCutoff = 'UnitMove_LodCutoff' },
         UISelection           = Sound { Bank = 'Interface',   Cue = 'UEF_Select_Commander',    LodCutoff = 'UnitMove_LodCutoff' },
     },
+    AverageDensity = 16000,
     BuildIconSortPriority = 10,
     Categories = {
         "AMPHIBIOUS",
@@ -34,7 +38,6 @@ UnitBlueprint {
         "ENERGYPRODUCTION",
         "ENGINEER",
         "LAND",
-        "MASSFABRICATION",
         "MASSPRODUCTION",
         "MOBILE",
         "OVERLAYCOUNTERINTEL",
@@ -47,6 +50,7 @@ UnitBlueprint {
         "REPAIR",
         "SELECTABLE",
         "SHOWQUEUE",
+        "SNIPEMODE",
         "SUBCOMMANDER",
         "TECH3",
         "UEF",
@@ -54,14 +58,11 @@ UnitBlueprint {
         "VISIBLETORECON",
     },
     Defense = {
-        AirThreatLevel = 0,
         ArmorType = "Normal",
         EconomyThreatLevel = 1028,
         Health = 13000,
         MaxHealth = 13000,
         RegenRate = 16,
-        SubThreatLevel = 0,
-        SurfaceThreatLevel = 30,
     },
     Display = {
         Abilities = {
@@ -171,9 +172,6 @@ UnitBlueprint {
         },
     },
     Economy = {
-        AirThreatLevel = 0,
-        ArmorType = "Normal",
-        EconomyThreatLevel = 1028,
         BuildCostEnergy = 21450,
         BuildCostMass = 1650,
         BuildRate = 40,
@@ -184,8 +182,8 @@ UnitBlueprint {
         NaturalProducer = true,
         ProductionPerSecondEnergy = 20,
         ProductionPerSecondMass = 1,
-        StorageEnergy = 750,
-        StorageMass = 450,
+        StorageEnergy = 500,
+        StorageMass = 275,
     },
     EnhancementPresets = {
         BubbleShield = {
@@ -490,7 +488,6 @@ UnitBlueprint {
                 y = 50,
             },
         },
-
     },
     General = {
         BuildBones = {
@@ -505,14 +502,12 @@ UnitBlueprint {
             RULEUCC_Capture = true,
             RULEUCC_Guard = true,
             RULEUCC_Move = true,
-            RULEUCC_Nuke = false,
             RULEUCC_Patrol = true,
             RULEUCC_Pause = true,
             RULEUCC_Reclaim = true,
             RULEUCC_Repair = true,
             RULEUCC_RetaliateToggle = true,
             RULEUCC_Stop = true,
-            RULEUCC_Transport = false,
         },
         ConstructionBar = true,
         FactionName = "UEF",
@@ -535,15 +530,6 @@ UnitBlueprint {
     LifeBarOffset = 0.5,
     LifeBarSize = 0.9,
     Physics = {
-        BankingSlope = 0,
-        BuildOnLayerCaps = {
-            LAYER_Air = false,
-            LAYER_Land = true,
-            LAYER_Orbit = false,
-            LAYER_Seabed = false,
-            LAYER_Sub = false,
-            LAYER_Water = false,
-        },
         DragCoefficient = 0.2,
         LayerChangeOffsetHeight = -0.85,
         MaxAcceleration = 2.2,
@@ -554,13 +540,11 @@ UnitBlueprint {
         MeshExtentsX = 0.85,
         MeshExtentsY = 2,
         MeshExtentsZ = 2.4,
-        MinSpeedPercent = 0,
         MotionType = "RULEUMT_Amphibious",
         StandUpright = true,
         TurnRadius = 10,
         TurnRate = 150,
     },
-    SelectionCenterOffsetX = 0,
     SelectionCenterOffsetZ = -0.1,
     SelectionSizeX = 0.55,
     SelectionSizeZ = 0.5,
@@ -609,7 +593,7 @@ UnitBlueprint {
             MuzzleSalvoSize = 1,
             MuzzleVelocity = 25,
             ProjectileId = "/projectiles/TDFPlasmaHeavy03/TDFPlasmaHeavy03_proj.bp",
-            ProjectileLifetimeUsesMultiplier = 1.15,
+            ProjectileLifetimeUsesMultiplier = 1.3,
             ProjectilesPerOnFire = 1,
             RackBones = {
                 {
@@ -625,13 +609,13 @@ UnitBlueprint {
             RackSalvoSize = 1,
             RackSlavedToTurret = false,
             RangeCategory = "UWRC_DirectFire",
-            RateOfFire = 1,
+            RateOfFire = 10/10, --10/integer interval in ticks
             TargetPriorities = {
                 "MOBILE EXPERIMENTAL",
+                "COMMAND",
                 "MOBILE TECH3",
                 "MOBILE TECH2",
                 "(STRUCTURE * DEFENSE - ANTIMISSILE)",
-                "MOBILE TECH1",
                 "ALLUNITS",
             },
             TargetRestrictDisallow = "UNTARGETABLE",
@@ -673,7 +657,7 @@ UnitBlueprint {
                 },
             },
             RackRecoilDistance = 0,
-            RateOfFire = 1,
+            RateOfFire = 10/10, --10/integer interval in ticks
             TargetRestrictDisallow = "UNTARGETABLE",
             Turreted = false,
             WeaponCategory = "Death",
