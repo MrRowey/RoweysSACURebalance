@@ -127,7 +127,7 @@ Unit_Description_0019="Replaces the SACU's Personal Shield with a Bubble Shield 
 Unit_Description_0020="Adds a Radar Jammer which creates false radar images. Countered by omni sensors."
 Unit_Description_0021="Increases SACU's resource generation by 10 mass per second and 1000 energy per second."
 Unit_Description_0022="Greatly expands the range of the standard on-board SACU sensor systems and Adds a Radar Jammer which creates false radar images. Countered by omni sensors."
-Unit_Description_0023="Primary weapon now fires 1.85 times as fast."
+Unit_Description_0023="Primary weapon now fires 2.0 times as fast."
 Unit_Description_0024="Equips the standard SACU Cannon with Area-Of-Effect damage and much higher range."
 
 -- CYBRAN -- Support Commander Units/Upgrades
