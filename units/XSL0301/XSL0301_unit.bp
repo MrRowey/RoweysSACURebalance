@@ -452,7 +452,7 @@ UnitBlueprint{
             BuildTime = 2800,
             Icon = "sre",
             Name = "<LOC enhancements_0141>Enhanced Sensor System",
-            NewMaxRadius = 30,
+            NewMaxRadius = 35,
             NewOmniRadius = 64,
             NewVisionRadius = 36,
             Slot = "RCH",
